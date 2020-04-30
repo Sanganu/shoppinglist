@@ -1,0 +1,26 @@
+{
+  "name": "shoppinglist",
+  "version": "1.0.0",
+  "description": "Nodejs app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sanganu/shoppinglist.git"
+  },
+  "keywords": [
+    "Express",
+    "routing"
+  ],
+  "author": "Sangeetha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sanganu/shoppinglist/issues"
+  },
+  "homepage": "https://github.com/Sanganu/shoppinglist#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
