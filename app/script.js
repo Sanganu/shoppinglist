@@ -1,5 +1,5 @@
 $.ajax({
-    url: "/api/item",
+    url: "/api/items",
     method: "GET"
 }).then(function (response) {
     console.log("response", response)
@@ -15,7 +15,7 @@ $("#additem").on("click", function () {
     }
     console.log(itementry)
     $.post({
-        url: "/api/items",
+        url: "/api/item",
         data: itementry
     }).then(function (response) {
         console.log("Response", response)
