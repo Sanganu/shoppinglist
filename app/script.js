@@ -32,7 +32,7 @@ function getAllRecords(){
             list.append(row)
         }
         mainObj.append(list)
-        $("#itemdisplay").append(mainObj)
+        $("#itemdisplay").html(mainObj)
     }).catch(function (error) {
         console.log("Error ", error)
     })
@@ -60,5 +60,18 @@ $("#additem").on("click", function () {
     })
 })
 
+$("#itemdisplay").on("click",".deleteitem",function(){
+    const id = $(this).parents("tr").attr("data-id")
+    console.log("Delete",id);
+
+    $.ajax({
+        url: "/api/item/"+id,
+        method:"DELETE"
+    }).then(function(yesdeleted){
+        console.log("Item deleted",yesdeleted);
+    }).catch(function(err){
+        console.log("Unable to delete",err)
+    })
+})
 
 getAllRecords();

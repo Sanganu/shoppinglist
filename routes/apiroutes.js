@@ -22,7 +22,7 @@ router.post("/item",function(request,response){
             response.json(err)
         }
         else{
-            console.log("DAta",db)
+            console.log("Data",db)
             response.json(db);
         }
     
@@ -30,5 +30,24 @@ router.post("/item",function(request,response){
     })
    
 });
+
+router.delete("/item/:id",function(request,response){
+    let  newdb = db.filter(function(item){
+         return item.id !== request.params.id
+    });
+    db=newdb;
+    console.log("Filtered Array",db);
+    fs.writeFile("db/data.json",JSON.stringify(db),function(err,data){
+        if(err){
+            console.log("Unable to write data to file",err)
+            response.json(err)
+        }
+        else{
+            console.log("Data",db)
+            response.json(db);
+        }
+  
+    })
+})
 
 module.exports = router;
