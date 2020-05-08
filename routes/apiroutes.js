@@ -3,8 +3,16 @@ const fs = require("fs");
 let  db = require("../db/data.json") ;
 const { v1: uuidv1 } = require('uuid');
 router.get("/items",function(request,response){
-   
-    response.json(db)
+    fs.readFile("db/data.json","utf8",function(err,data){
+        if(err){
+            console.log("Error in reading from file",data);
+            response.json(err)
+        }
+        db = JSON.parse(data)
+        console.log("Data",db,err)
+        response.json(db)
+    })
+
 });
 
 router.post("/item",function(request,response){

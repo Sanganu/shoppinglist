@@ -69,6 +69,7 @@ $("#itemdisplay").on("click",".deleteitem",function(){
         method:"DELETE"
     }).then(function(yesdeleted){
         console.log("Item deleted",yesdeleted);
+        getAllRecords()
     }).catch(function(err){
         console.log("Unable to delete",err)
     })
