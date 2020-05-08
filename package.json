@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/Sanganu/shoppinglist#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "uuid": "^8.0.0"
   }
 }
