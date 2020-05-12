@@ -75,4 +75,4 @@ $("#itemdisplay").on("click",".deleteitem",function(){
     })
 })
 
-getAllRecords();
+// getAllRecords();

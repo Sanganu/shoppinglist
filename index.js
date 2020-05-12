@@ -1,4 +1,5 @@
 const express = require("express");
+const ephbs = require("express-handlebars");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -7,8 +8,11 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(express.static("./app"))
 
-app.use("/api",require("./routes/apiroutes.js"))
-app.use("/",require("./routes/htmlroutes.js"))
+app.engine("handlebars",ephbs({defaultLayout:"main"}));
+app.set("view engine","handlebars")
+
+app.use("/",require("./routes/apiroutes.js"))
+// app.use("/",require("./routes/htmlroutes.js"))
 
 
 app.listen(PORT,() => {
