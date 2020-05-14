@@ -9,14 +9,14 @@ router.get("/",function(request,response){
             response.json(err)
         }
         db = JSON.parse(data)
-        console.log("Data",db,err)
+        console.log("Data",db)
         // response.json(db)
-        res.render("index",{list:data})
+        response.render("index",{list:db})
     })
 
 });
 
-router.post("/item",function(request,response){
+router.post("/api/item",function(request,response){
     console.log(request.body);
     var record = {
         id: uuidv1(),

@@ -51,17 +51,18 @@ $("#additem").on("click", function () {
         data: itementry
     }).then(function (response) {
         console.log("Response", response)
-        getAllRecords();
+       // getAllRecords();
         $("#itemdescription").val("");
         $("#quantity").val("");
-        $("#shopname").val("")
+        $("#shopname").val("");
+        location.reload();
     }).catch(function (error) {
         console.log("Error -", error)
     })
 })
 
-$("#itemdisplay").on("click",".deleteitem",function(){
-    const id = $(this).parents("tr").attr("data-id")
+$("#itemdisplay").on("click",".removeitem",function(){
+    const id = $(this).attr("id")
     console.log("Delete",id);
 
     $.ajax({
@@ -69,10 +70,15 @@ $("#itemdisplay").on("click",".deleteitem",function(){
         method:"DELETE"
     }).then(function(yesdeleted){
         console.log("Item deleted",yesdeleted);
-        getAllRecords()
+        // getAllRecords();
+        location.reload();
     }).catch(function(err){
         console.log("Unable to delete",err)
     })
 })
 
 // getAllRecords();
+
+// $(".removeitem").on("click",function(){
+    
+// })

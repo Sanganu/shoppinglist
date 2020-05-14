@@ -2,9 +2,16 @@
 <div class="container">
     <div class="row">
         <div class="col-4">
+            <table>
+    <tbody id="itemdisplay">
+       
             {{#each list}}
-            
+     
+            {{> listitems}}
             {{/each}}
+        
+    </tbody>
+</table>
         </div>
         <div class="col-9">
             {{> inputs}}
