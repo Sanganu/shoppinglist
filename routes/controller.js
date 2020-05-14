@@ -40,7 +40,7 @@ router.post("/api/item",function(request,response){
    
 });
 
-router.delete("/item/:id",function(request,response){
+router.delete("/api/item/:id",function(request,response){
     let  newdb = db.filter(function(item){
          return item.id !== request.params.id
     });
