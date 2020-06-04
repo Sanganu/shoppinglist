@@ -16,6 +16,34 @@ router.get("/",function(request,response){
 
 });
 
+router.get("/api/shoplist",function(request,response){
+    fs.readFile("db/data.json","utf8",function(err,data){
+        if(err){
+            console.log("Error in reading from file",data);
+            response.json(err)
+        }
+        db = JSON.parse(data)
+        console.log("Original Array: ",db)
+        let sortShop = db.sort(function(a,b){
+            let shopA = a.shopname.toLowerCase()
+            let shopB = b.shopname.toLowerCase()
+            if(shopA > shopB){
+                return 1
+            }
+            else if(shopA < shopB){
+                return -1
+            }
+            else {
+                return 0
+            }
+        })
+        console.log("Sort Function",sortShop)
+        // response.json(db)
+        response.render("index",{list:sortShop})
+    })
+
+});
+
 router.post("/api/item",function(request,response){
     console.log(request.body);
     var record = {
