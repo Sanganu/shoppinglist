@@ -75,6 +75,20 @@ $("#itemdisplay").on("click",".removeitem",function(){
     }).catch(function(err){
         console.log("Unable to delete",err)
     })
+});
+
+
+$("#searchitem").on("click",function(){
+    let searchtext = $(this).sibling().val()
+    console.log("search",searchtext)
+    $.ajax({
+        url:"/api/search/"+searchtext,
+        method:"GET",
+    }).then(function(response){
+        console.log("REs",res)
+    }).catch(function(err){
+        console.log("Unable to get searchtxt",err)
+    })
 })
 
 // getAllRecords();

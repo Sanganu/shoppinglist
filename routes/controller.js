@@ -16,13 +16,14 @@ router.get("/",function(request,response){
 
 });
 
+//Sort By Shopname
 router.get("/api/shoplist",function(request,response){
-    fs.readFile("db/data.json","utf8",function(err,data){
-        if(err){
-            console.log("Error in reading from file",data);
-            response.json(err)
-        }
-        db = JSON.parse(data)
+    // fs.readFile("db/data.json","utf8",function(err,data){
+    //     if(err){
+    //         console.log("Error in reading from file",data);
+    //         response.json(err)
+    //     }
+        // db = JSON.parse(data)
         console.log("Original Array: ",db)
         let sortShop = db.sort(function(a,b){
             let shopA = a.shopname.toLowerCase()
@@ -40,8 +41,19 @@ router.get("/api/shoplist",function(request,response){
         console.log("Sort Function",sortShop)
         // response.json(db)
         response.render("index",{list:sortShop})
-    })
+    // })
 
+});
+
+router.get("/api/search",function(request,response){
+    let searchtxt = request.body.searchtxt
+        console.log("Original Array: ",db)
+        let searchitems = db.filter(function(a){
+            return(a.shopname == searchtxt || a.itemdescription == searchtxt)
+        })
+        console.log("Sort Function",searchitems)
+
+        response.render("index",{list:searchitems})
 });
 
 router.post("/api/item",function(request,response){
