@@ -2,6 +2,7 @@ const router = require("express").Router()
 const fs = require("fs");
 let  db = require("../db/data.json") ;
 const { v1: uuidv1 } = require('uuid');
+
 router.get("/",function(request,response){
     fs.readFile("db/data.json","utf8",function(err,data){
         if(err){
@@ -82,7 +83,7 @@ router.post("/api/item",function(request,response){
 
 router.delete("/api/item/:id",function(request,response){
     let  newdb = db.filter(function(item){
-         return item.id !== request.params.id
+         return item.id != request.params.id
     });
     db=newdb;
     console.log("Filtered Array",db);
