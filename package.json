@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "watch": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,10 @@
   },
   "homepage": "https://github.com/Sanganu/shoppinglist#readme",
   "dependencies": {
+    "bulma": "^0.9.3",
+    "bulma-start": "0.0.4",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
-    "fs": "0.0.1-security",
     "uuid": "^8.0.0"
   }
 }
