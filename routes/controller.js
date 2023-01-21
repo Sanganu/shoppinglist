@@ -10,8 +10,8 @@ router.get("/",function(request,response){
             response.json(err)
         }
         db = JSON.parse(data)
-        console.log("Data",db)
-        // response.json(db)
+        console.log("Data GET",db)
+ 
         response.render("index",{list:db})
     })
 
@@ -39,29 +39,31 @@ router.get("/api/shoplist",function(request,response){
                 return 0
             }
         })
-        console.log("Sort Function",sortShop)
-        // response.json(db)
+        console.log("Sort Function SORT",sortShop)
+       
         response.render("index",{list:sortShop})
     // })
 
 });
 
-router.get("/api/search",function(request,response){
-    let searchtxt = request.body.searchtxt
+router.get("/api/search/:searchString",function(request,response){
+    let searchtxt = new RegExp(request.params.searchString,'i');
         console.log("Original Array: ",db)
-        let searchitems = db.filter(function(a){
-            return(a.shopname == searchtxt || a.itemdescription == searchtxt)
+        let searchitems = db.filter(element => {
+          if((searchtxt.test(element.itemdescription)) || (searchtxt.test(element.shopname))){
+              return element
+          }
         })
-        console.log("Sort Function",searchitems)
-
-        response.render("index",{list:searchitems})
+        console.log("Search Function SEARCH",searchitems)
+        response.json(searchitems)
+        // response.render("index",{list:searchitems})
 });
 
 router.post("/api/item",function(request,response){
-    console.log(request.body);
+    console.log(request.body,"POST record");
     var record = {
         id: uuidv1(),
-        itemdescription:request.body.itemdescription,
+        itemdescription: request.body.itemdescription,
         quantity: request.body.quantity,
         shopname: request.body.shopname
     }
@@ -71,14 +73,11 @@ router.post("/api/item",function(request,response){
             console.log("Unable to write data to file",err)
             response.json(err)
         }
-        else{
-            console.log("Data",db)
+      
+            console.log("Data POST",db)
             response.json(db);
-        }
-    
-     
+       
     })
-   
 });
 
 router.delete("/api/item/:id",function(request,response){
@@ -92,11 +91,10 @@ router.delete("/api/item/:id",function(request,response){
             console.log("Unable to write data to file",err)
             response.json(err)
         }
-        else{
-            console.log("Data",db)
+      
+            console.log("Data DELETE",db)
             response.json(db);
-        }
-  
+        
     })
 })
 
